@@ -102,6 +102,7 @@ export abstract class WebServiceHelper {
 
     private static buildCertAgentOpt(cert: any) {
         return {
+            rejectUnauthorized: (cert.rejectUnauthorized === undefined) ? true : cert.rejectUnauthorized,
             pfx: cert.pfx,
             passphrase: cert.password
         }
@@ -125,7 +126,7 @@ export abstract class WebServiceHelper {
                 result.success = true;
 
                 //let retorno = (require('util').inspect(XmlHelper.deserializeXml(res.data), false, null));
-                let retorno = XmlHelper.deserializeXml(result.xml_recebido);
+                let retorno = XmlHelper.deserializeXml(result.xml_recebido, {explicitArray: false});
                 if (retorno) {
                     //result.data = retorno;
                     result.data = Object(retorno)['soap:Envelope']['soap:Body']['nfeResultMsg'];

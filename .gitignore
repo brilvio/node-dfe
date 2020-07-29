@@ -68,7 +68,10 @@ package-lock.json
 yarn.lock
 
 # npm deploy folder
-lib
+# lib
 
 # python compiled
 **/**/*.pyc
+xml/
+xml_envio/
+xml_retorno/
